@@ -2,6 +2,7 @@ from django.views import generic
 from django.shortcuts import render
 from braces.views import LoginRequiredMixin
 from . import forms
+from django.template.response import TemplateResponse
 
 from models import usersProfiles
 from models import boozProfiles
@@ -106,6 +107,18 @@ class GuestEntry(LoginRequiredMixin, generic.TemplateView):
         else:
             form = forms.LocateDrinkersForm(request.POST)
             return render(request, "locatedrinkers.html", { 'form' : form })
+
+
+class GuestList(LoginRequiredMixin, generic.TemplateView):
+    def get(self, request, *args, **kwargs):
+        template_name = "guestList.html"
+        http_method_names = ['get', 'post']
+        user = self.request.user
+        models = locateDrinkers
+        response = TemplateResponse(request, 'guestList.html', {})
+
+        return response
+
 
 
 

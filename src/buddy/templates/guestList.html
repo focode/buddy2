@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load thumbnail %}
+
+{% block title %}{{ block.super }}Profile{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block container %}
+
+<div class="container">
+    <div class="header">
+        <h3 class="text-muted">T-Shirt registration form</h3>
+    </div>
+    <div class="row" style="padding:20px;">
+        <ul class="list-group">
+            <li class="list-group-item"><span class="badge">12</span> New</li>
+            <li class="list-group-item"><span class="badge">5</span> Deleted</li>
+            <li class="list-group-item"><span class="badge">3</span> Warnings</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
