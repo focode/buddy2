@@ -116,7 +116,15 @@ class GuestList(LoginRequiredMixin, generic.TemplateView):
         user = self.request.user
         models = locateDrinkers
         response = TemplateResponse(request, 'guestList.html', {})
+        return response
 
+class YourJoingList(LoginRequiredMixin, generic.TemplateView):
+    def get(self, request, *args, **kwargs):
+        template_name = "yourjoininglist.html"
+        http_method_names = ['get', 'post']
+        user = self.request.user
+        models = locateDrinkers
+        response = TemplateResponse(request, 'yourjoininglist.html', {})
         return response
 
 

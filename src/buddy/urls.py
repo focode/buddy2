@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^boozProfiles/', views.BoozProfiles.as_view(), name='boozProfiles'),
     url(r'^locateDrinkers/', views.LocateDrinkers.as_view(), name='locateDrinkers'),
     url(r'^GuestList/', views.GuestList.as_view(), name='GuestList'),
-
+    url(r'^YourJoingList/', views.YourJoingList.as_view(), name='YourJoingList'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(accounts.urls, namespace='accounts')),
 ]
