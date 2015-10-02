@@ -46,10 +46,11 @@ class BoozProfiles(LoginRequiredMixin, generic.TemplateView):
         http_method_names = ['get', 'post']
         user = self.request.user
         models = boozProfiles
-        form = forms.UserProfileForm(request.POST)
+        form = forms.boozProfilesForm(request.POST)
         if form.is_valid():
           # The form is valid and can be saved to the database
           # by calling the 'save()' method of the ModelForm instance.
+          print request.POST
           form.save()
 
           # Render the success page.
@@ -61,6 +62,30 @@ class BoozProfiles(LoginRequiredMixin, generic.TemplateView):
         else:
             form = forms.boozProfilesForm(request.POST)
             return render(request, "boozinvite.html", { 'form' : form })
+
+    def post(self, request, *args, **kwargs):
+        template_name = "boozinvite.html"
+        http_method_names = ['get', 'post']
+        user = self.request.user
+        models = boozProfiles
+        form = forms.boozProfilesForm(request.POST)
+        print form
+        if form.is_valid():
+          # The form is valid and can be saved to the database
+          # by calling the 'save()' method of the ModelForm instance.
+          print request.POST
+          form.save()
+
+          # Render the success page.
+          return render(request, "boozinvite.html")
+
+          # This means that the request is a GET request. So we need to
+          # create an instance of the TShirtRegistrationForm class and render it in
+          # the template
+        else:
+            form = forms.boozProfilesForm(request.POST)
+            return render(request, "boozinvite.html", { 'form' : form })
+
 
 class LocateDrinkers(LoginRequiredMixin, generic.TemplateView):
 
