@@ -84,6 +84,7 @@ INSTALLED_APPS = (
     'profiles',
     'accounts',
     'buddy',
+    "geoposition",
 
 )
 

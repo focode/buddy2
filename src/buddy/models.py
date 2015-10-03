@@ -3,6 +3,7 @@ from django.utils.encoding import python_2_unicode_compatible
 import uuid
 from django.db import models
 from django.conf import settings
+from geoposition.fields import GeopositionField
 
 
 class usersProfiles(models.Model):
@@ -33,6 +34,7 @@ class boozProfiles(models.Model):
     message = models.CharField(max_length=100)
     long_position   = models.DecimalField (max_digits=8, decimal_places=3)
     lat_position   = models.DecimalField (max_digits=8, decimal_places=3)
+    position = GeopositionField()
     mobile = models.IntegerField(max_length=100)
 
 

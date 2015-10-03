@@ -20,6 +20,7 @@
             <!-- If there are non-field errors in the form,
                  iterate over them one by one and display them.
              -->
+            {{ form.media }}
             {% if form.non_field_errors %}
             <p class="error">
                 {% for error in form.non_field_errors %}
@@ -54,6 +55,7 @@
             {% endfor %}
             <input type="submit" class="btn btn-default" value="Submit"/>
         </form>
+
     </div>
 </div>
 {% endblock %}
