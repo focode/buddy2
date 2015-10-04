@@ -26,16 +26,15 @@ class boozProfiles(models.Model):
     (Female, 'FeMale'),
     (Others, 'Others')
       )
-    boozshopname = models.CharField(max_length=300)
-    boozshopaddress = models.CharField(max_length=500)
-    zipcod = models.IntegerField(max_length=100)
+
+    Booz_shop_location = GeopositionField()
+    mobile = models.IntegerField(max_length=100)
+    boozshopname = models.CharField(max_length=300,blank=True, null=True)
+    boozshopaddress = models.CharField(max_length=500,blank=True, null=True)
+    zipcod = models.IntegerField(max_length=100,blank=True, null=True)
     datetime = models.DateTimeField("StartTime",blank=True, null=True)
     GendersAllowed = models.CharField(max_length=10,choices=genders,default=Male)
-    message = models.CharField(max_length=100)
-    long_position   = models.DecimalField (max_digits=8, decimal_places=3)
-    lat_position   = models.DecimalField (max_digits=8, decimal_places=3)
-    position = GeopositionField()
-    mobile = models.IntegerField(max_length=100)
+    message = models.TextField(max_length=100)
 
 
 class locateDrinkers(models.Model):

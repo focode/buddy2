@@ -3,10 +3,12 @@ from django.shortcuts import render
 from braces.views import LoginRequiredMixin
 from . import forms
 from django.template.response import TemplateResponse
+from buddyutility import getAddress
 
 from models import usersProfiles
 from models import boozProfiles
 from models import locateDrinkers
+
 
 
 class HomePage(generic.TemplateView):
@@ -27,6 +29,7 @@ class UserProfiles(LoginRequiredMixin, generic.TemplateView):
         if form.is_valid():
           # The form is valid and can be saved to the database
           # by calling the 'save()' method of the ModelForm instance.
+          # TODO getting value from google map, set it in model and save it
           form.save()
 
           # Render the success page.
@@ -69,11 +72,18 @@ class BoozProfiles(LoginRequiredMixin, generic.TemplateView):
         user = self.request.user
         models = boozProfiles
         form = forms.boozProfilesForm(request.POST)
-        print form
+
         if form.is_valid():
           # The form is valid and can be saved to the database
           # by calling the 'save()' method of the ModelForm instance.
-          print request.POST
+          print form.cleaned_data['datetime']
+          print form.cleaned_data
+          latitude = form.cleaned_data['Booz_shop_location'][0]
+          longitude = form.cleaned_data['Booz_shop_location'][1]
+          print latitude,longitude
+
+          address = getAddress(latitude,longitude)
+
           form.save()
 
           # Render the success page.

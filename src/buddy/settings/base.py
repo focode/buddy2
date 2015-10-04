@@ -85,6 +85,7 @@ INSTALLED_APPS = (
     'accounts',
     'buddy',
     "geoposition",
+    "datetimewidget",
 
 )
 

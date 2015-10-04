@@ -5,6 +5,7 @@ from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 from django.contrib.auth import get_user_model
 from . import models
+from datetimewidget.widgets import DateTimeWidget
 
 
 class UserProfileForm(forms.ModelForm):
@@ -35,6 +36,10 @@ class boozProfilesForm(forms.ModelForm):
 
     class Meta:
         model = models.boozProfiles
+        widgets = {
+            #Use localization and bootstrap 3
+            'datetime': DateTimeWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3)
+        }
         fields = "__all__"
 
 
