@@ -36,6 +36,7 @@ def getAddress(latitude,longitude):
     for element in reverse_geocode_result:
         print element['formatted_address']
         googleaddress = element['formatted_address']
+        break
 
 
     return googleaddress

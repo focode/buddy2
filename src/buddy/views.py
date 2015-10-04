@@ -84,7 +84,9 @@ class BoozProfiles(LoginRequiredMixin, generic.TemplateView):
 
           address = getAddress(latitude,longitude)
 
-          form.save()
+          tempAddress = form.save()
+          tempAddress.boozshopaddress = address
+          tempAddress.save()
 
           # Render the success page.
           return render(request, "boozinvite.html")
