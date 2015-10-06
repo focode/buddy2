@@ -24,7 +24,8 @@ class boozProfiles(models.Model):
     (Female, 'FeMale'),
     (Others, 'Others')
       )
-
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                primary_key=True)
     Booz_shop_location = GeopositionField()
     mobile = models.IntegerField(max_length=100)
     boozshopname = models.CharField(max_length=300,blank=True, null=True)
