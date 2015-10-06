@@ -9,9 +9,7 @@ from geoposition.fields import GeopositionField
 class usersProfiles(models.Model):
   username = models.CharField(max_length=100)
   age = models.IntegerField(max_length=100)
-  email = models.EmailField()
   gender = models.CharField(max_length=100)
-  address = models.TextField(max_length=500)
   ethenic = models.CharField(max_length=100)
   interest = models.TextField(max_length=500)
 

@@ -17,6 +17,10 @@ class BaseProfile(models.Model):
                                 blank=True)
     bio = models.CharField("Short Bio", max_length=200, blank=True, null=True)
     email_verified = models.BooleanField("Email verified", default=False)
+    age = models.IntegerField(max_length=100,blank=True, null=True)
+    gender = models.CharField(max_length=100,blank=True, null=True)
+    ethenic = models.CharField(max_length=100,blank=True, null=True)
+    interest = models.TextField(max_length=500,blank=True, null=True)
 
     class Meta:
         abstract = True

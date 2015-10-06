@@ -29,7 +29,29 @@ class UserProfiles(LoginRequiredMixin, generic.TemplateView):
         if form.is_valid():
           # The form is valid and can be saved to the database
           # by calling the 'save()' method of the ModelForm instance.
-          # TODO getting value from google map, set it in model and save it
+          #
+          form.save()
+
+          # Render the success page.
+          return render(request, "addprofile.html")
+
+          # This means that the request is a GET request. So we need to
+          # create an instance of the TShirtRegistrationForm class and render it in
+          # the template
+        else:
+            form = forms.UserProfileForm(request.POST)
+            return render(request, "addprofile.html", { 'form' : form })
+
+    def post(self, request, *args, **kwargs):
+        template_name = "addprofile.html"
+        http_method_names = ['get', 'post']
+        user = self.request.user
+        models = usersProfiles
+        form = forms.UserProfileForm(request.POST)
+        if form.is_valid():
+          # The form is valid and can be saved to the database
+          # by calling the 'save()' method of the ModelForm instance.
+          #
           form.save()
 
           # Render the success page.
