@@ -47,11 +47,11 @@ class locateDrinkers(models.Model):
     (Female, 'FeMale'),
     (Others, 'Others')
       )
-    boozshopname = models.CharField(max_length=300)
-    boozshopaddress = models.CharField(max_length=500)
-    interests = models.CharField(max_length=500)
-    zipcod = models.IntegerField(max_length=100)
-    datetime = models.DateTimeField("StartTime")
+    boozshopname = models.CharField(max_length=300,blank=True, null=True)
+    boozshopaddress = models.CharField(max_length=500,blank=True, null=True)
+    interests = models.CharField(max_length=500,blank=True, null=True)
+    zipcod = models.IntegerField(max_length=100,blank=True, null=True)
+    datetime = models.DateTimeField("StartTime",blank=True, null=True)
     GendersAllowed = models.CharField(max_length=20,choices=genders,default=Male)
 
 

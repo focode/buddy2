@@ -8,6 +8,7 @@ from buddyutility import getAddress
 from models import usersProfiles
 from models import boozProfiles
 from models import locateDrinkers
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 
@@ -156,10 +157,23 @@ class LocateDrinkers(LoginRequiredMixin, generic.TemplateView):
         if form.is_valid():
           # The form is valid and can be saved to the database
           # by calling the 'save()' method of the ModelForm instance.
-          form.save()
+          searchAttributes = form.save(commit=False)
+          print "searchAttributes.boozshopaddress", searchAttributes.boozshopaddress
+          #searchResults = boozProfiles.objects.filter(Booz_shop_location__icontains=searchAttributes.boozshopaddress)
+          searchResults = boozProfiles.objects.all()
+          paginator = Paginator(searchResults, 25) # Show 25 contacts per page
+          page = request.GET.get('page')
+          print "searchResults.query", searchResults.query
+          print "searchResults::" ,str(searchResults)
+          try:
+              profilePerPage = paginator.page(page)
+          except PageNotAnInteger:
+              profilePerPage = paginator.page(1)
+          except EmptyPage:
+              profilePerPage = paginator.page(paginator.num_pages)
 
-          # Render the success page.
-          return render(request, "locatedrinkers.html")
+          return render_to_response('"locatedrinkers.html"', {"profiles": profilePerPage})
+          
 
           # This means that the request is a GET request. So we need to
           # create an instance of the TShirtRegistrationForm class and render it in
