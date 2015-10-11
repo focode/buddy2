@@ -24,8 +24,8 @@ class boozProfiles(models.Model):
     (Female, 'FeMale'),
     (Others, 'Others')
       )
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,
-                                primary_key=True)
+    boozProfileId = models.AutoField(primary_key=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     Booz_shop_location = GeopositionField()
     mobile = models.IntegerField(max_length=100)
     boozshopname = models.CharField(max_length=300,blank=True, null=True)
@@ -52,7 +52,7 @@ class locateDrinkers(models.Model):
     interests = models.CharField(max_length=500)
     zipcod = models.IntegerField(max_length=100)
     datetime = models.DateTimeField("StartTime")
-    GendersAllowed = models.CharField(max_length=2,choices=genders,default=Male)
+    GendersAllowed = models.CharField(max_length=20,choices=genders,default=Male)
 
 
 

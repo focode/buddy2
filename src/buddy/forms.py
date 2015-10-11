@@ -40,7 +40,7 @@ class boozProfilesForm(forms.ModelForm):
             #Use localization and bootstrap 3
             'datetime': DateTimeWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3)
         }
-        fields = "__all__"
+        fields = ['Booz_shop_location', 'mobile', 'boozshopname', 'boozshopaddress','zipcod','datetime','GendersAllowed','message']
 
 
 class LocateDrinkersForm(forms.ModelForm):

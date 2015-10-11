@@ -91,7 +91,7 @@ class BoozProfiles(LoginRequiredMixin, generic.TemplateView):
     def post(self, request, *args, **kwargs):
         template_name = "boozinvite.html"
         http_method_names = ['get', 'post']
-        user = self.request.user
+        userTemp = self.request.user
         models = boozProfiles
         form = forms.boozProfilesForm(request.POST)
 
@@ -105,10 +105,13 @@ class BoozProfiles(LoginRequiredMixin, generic.TemplateView):
           print latitude,longitude
 
           address = getAddress(latitude,longitude)
+          print "User name is ::", userTemp
 
-          tempAddress = form.save()
+          tempAddress = form.save(commit=False)
           tempAddress.boozshopaddress = address
+          tempAddress.user = userTemp
           tempAddress.save()
+
 
           # Render the success page.
           return render(request, "boozinvite.html")
@@ -124,6 +127,27 @@ class BoozProfiles(LoginRequiredMixin, generic.TemplateView):
 class LocateDrinkers(LoginRequiredMixin, generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
+        template_name = "locatedrinkers.html"
+        http_method_names = ['get', 'post']
+        user = self.request.user
+        models = locateDrinkers
+        form = forms.LocateDrinkersForm(request.POST)
+        if form.is_valid():
+          # The form is valid and can be saved to the database
+          # by calling the 'save()' method of the ModelForm instance.
+          form.save()
+
+          # Render the success page.
+          return render(request, "locatedrinkers.html")
+
+          # This means that the request is a GET request. So we need to
+          # create an instance of the TShirtRegistrationForm class and render it in
+          # the template
+        else:
+            form = forms.LocateDrinkersForm(request.POST)
+            return render(request, "locatedrinkers.html", { 'form' : form })
+
+    def post(self, request, *args, **kwargs):
         template_name = "locatedrinkers.html"
         http_method_names = ['get', 'post']
         user = self.request.user
