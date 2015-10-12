@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load thumbnail %}
+
+{% block title %}{{ block.super }}Profile{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block container %}
+
+
+
+<div class="container" xmlns="http://www.w3.org/1999/html">
+
+    <div class="row" style="padding:20px;">
+        li { background: green; }
+        li:nth-child(odd) { background: red; }
+
+        {% for profilePerPage in profilePerPages %}
+        {# Each "contact" is a Contact model object. #}
+        <ul class="list-group">
+        <br class="list-group-item list-group-item-info">
+            <h4 class="list-group-item-heading">
+            Bar Name :{{ profilePerPage.boozshopname|upper }} </h4> </br>
+            Address:{{ profilePerPage.boozshopaddress|upper }} </br>
+            zipcod :{{ profilePerPage.zipcod|upper }} </br>
+            datetime :{{ profilePerPage.datetime|upper }} </br>
+            GendersAllowed :{{ profilePerPage.GendersAllowed|upper }} </br>
+            message :{{ profilePerPage.message|upper }} </br>
+            user :{{ profilePerPage.user|upper }} </br>
+
+
+        </li>
+            <br/>
+        </ul>
+        {% endfor %}
+
+        <div class="pagination">
+    <span class="step-links">
+        {% if profilePerPages.has_previous %}
+            <a href="?page={{ profilePerPages.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ profilePerPages.number }} of {{ profilePerPages.paginator.num_pages }}.
+        </span>
+
+        {% if profilePerPages.has_next %}
+            <a href="?page={{ profilePerPages.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+        </div>
+    </div>
+</div>
+{% endblock %}

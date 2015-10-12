@@ -4,7 +4,7 @@ from braces.views import LoginRequiredMixin
 from . import forms
 from django.template.response import TemplateResponse
 from buddyutility import getAddress
-
+from django.shortcuts import render_to_response
 from models import usersProfiles
 from models import boozProfiles
 from models import locateDrinkers
@@ -149,7 +149,7 @@ class LocateDrinkers(LoginRequiredMixin, generic.TemplateView):
             return render(request, "locatedrinkers.html", { 'form' : form })
 
     def post(self, request, *args, **kwargs):
-        template_name = "locatedrinkers.html"
+        template_name = "drinkersList.html"
         http_method_names = ['get', 'post']
         user = self.request.user
         models = locateDrinkers
@@ -166,14 +166,14 @@ class LocateDrinkers(LoginRequiredMixin, generic.TemplateView):
           print "searchResults.query", searchResults.query
           print "searchResults::" ,str(searchResults)
           try:
-              profilePerPage = paginator.page(page)
+              profilePerPages = paginator.page(page)
           except PageNotAnInteger:
-              profilePerPage = paginator.page(1)
+              profilePerPages = paginator.page(1)
           except EmptyPage:
-              profilePerPage = paginator.page(paginator.num_pages)
+              profilePerPages = paginator.page(paginator.num_pages)
 
-          return render_to_response('"locatedrinkers.html"', {"profiles": profilePerPage})
-          
+          return render_to_response("drinkersList.html", {"profilePerPages": profilePerPages})
+
 
           # This means that the request is a GET request. So we need to
           # create an instance of the TShirtRegistrationForm class and render it in
