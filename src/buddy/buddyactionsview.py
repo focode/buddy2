@@ -46,3 +46,4 @@ class YourJoingList(LoginRequiredMixin, generic.TemplateView):
 
 
 
+
