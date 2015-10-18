@@ -54,6 +54,16 @@ class locateDrinkers(models.Model):
     datetime = models.DateTimeField("StartTime",blank=True, null=True)
     GendersAllowed = models.CharField(max_length=20,choices=genders,default=Male)
 
+class GuestEntry(models.Model):
+    guestId = models.AutoField(primary_key=True)
+    boozprofileId = models.IntegerField(max_length=100,blank=True, null=True)
+    userId = models.IntegerField(max_length=100,blank=True, null=True)
+    likeStatus = models.BooleanField()
+    joiningtime = models.DateTimeField("joiningTime",blank=True, null=True)
+
+
+
+
 
 
 

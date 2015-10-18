@@ -57,6 +57,23 @@ class LocateDrinkersForm(forms.ModelForm):
         model = models.locateDrinkers
         fields = "__all__"
 
+'''
+class GuestEntryForm(forms.ModelForm):
+    def __init__(self,*args,**kwargs):
+        super(GuestEntryForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.helper.layout = Layout(
+            Submit('update', 'Update', css_class="btn-success"),
+            )
+
+    class Meta:
+        model = models.GuestEntry
+        fields = "__all__"
+
+        '''
+
+
 
 
 
