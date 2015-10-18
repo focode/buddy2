@@ -14,14 +14,17 @@
         <h3 class="text-muted">T-Shirt registration form</h3>
     </div>
     <div class="row" style="padding:20px;">
-         {% for allJoingList in allJoingLists %}
+
         <ul class="list-group">
-           <br class="list-group-item">
+             {% for allJoingList in allJoingLists %}
+
+            <li>
                {{ allJoingList.boozprofileId }}</br>
                {{ allJoingList.guestId|upper }}</br>
            </li>
         </ul>
+        {% endfor %}
     </div>
-     {% endfor %}
+
 </div>
 {% endblock %}

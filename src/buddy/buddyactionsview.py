@@ -38,7 +38,8 @@ class YourJoingList(LoginRequiredMixin, generic.TemplateView):
         joingTime = datetime.datetime.now()
         user_id = user.id
 
-        saveGuestEntry(boozprofileId=boozIdProfileRequest,userId=user_id,likeStatus='True',joiningtime = joingTime)
+        if queryvalue:
+            saveGuestEntry(boozprofileId=boozIdProfileRequest,userId=user_id,likeStatus='True',joiningtime = joingTime)
         #g = GuestEntry(boozprofileId=boozIdProfileRequest,userId=user_id,likeStatus='True',joiningtime = joingTime)
         #g.save()
 
