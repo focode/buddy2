@@ -3,6 +3,8 @@ from django.shortcuts import render
 from braces.views import LoginRequiredMixin
 from . import forms
 import datetime
+from django.core import serializers
+import json
 from django.template.response import TemplateResponse
 from buddyutility import getAddress
 from django.shortcuts import render_to_response
@@ -12,7 +14,7 @@ from models import locateDrinkers
 from models import GuestEntry
 from guestOperations import saveGuestEntry,getAllJoingList
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.http import HttpResponse
 
 
 
@@ -46,6 +48,13 @@ class YourJoingList(LoginRequiredMixin, generic.TemplateView):
         # now show all the joining list of the logged in user
 
         allJoingLists = getAllJoingList()
+        print type(allJoingLists)
+
+
+
+
+
+
 
         # perform db action here and create joing list and render it here
         return render_to_response("yourjoininglist.html", {"allJoingLists": allJoingLists})

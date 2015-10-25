@@ -1,4 +1,5 @@
 from django.conf.urls import include, url
+from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
@@ -18,6 +19,8 @@ urlpatterns = [
     url(r'^YourJoingList/', buddyactionsview.YourJoingList.as_view(), name='YourJoingList'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(accounts.urls, namespace='accounts')),
+    url( r'^api/', include( 'buddyapi.urls' ) ),
+
 ]
 
 # User-uploaded files like profile pics need to be served in development
