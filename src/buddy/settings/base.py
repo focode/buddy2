@@ -77,6 +77,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Django Rest Framework
+    'rest_framework',
+
     'authtools',
     'crispy_forms',
     'easy_thumbnails',
@@ -86,6 +89,8 @@ INSTALLED_APPS = (
     'buddy',
     "geoposition",
     "datetimewidget",
+    "task",
+    "buddyapi",
 
 )
 

@@ -1,7 +1,8 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
+from rest_framework import viewsets
+from rest_framework.views import APIView
 from rest_framework.generics import (
     ListCreateAPIView, RetrieveUpdateDestroyAPIView )
 
@@ -81,6 +82,7 @@ class TaskMixin(object):
     """
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    print "serializer_class",serializer_class
 
 class TaskList(TaskMixin, ListCreateAPIView):
     """
@@ -94,3 +96,23 @@ class TaskDetail(TaskMixin, RetrieveUpdateDestroyAPIView):
     Return a specific task, update it, or delete it.
     """
     pass
+
+class UserViewSet(viewsets.ViewSet):
+     """
+    A simple ViewSet for listing or retrieving users.
+    """
+
+class DummyResponse(APIView):
+
+
+
+     def get(self, request, pk, format='json'):
+         queryset = Task.objects.all()
+         serializer_class = TaskSerializer
+         return Response("hi")
+
+
+
+
+
+
