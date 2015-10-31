@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.core import serializers
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.generics import (
@@ -8,69 +9,6 @@ from rest_framework.generics import (
 
 from .models import Task
 from .serializers import TaskSerializer
-
-# Example using function based views
-# -----------------------------------
-
-# @api_view(['GET', 'POST'])
-# def task_list(request):
-#     """
-#     List all task, or create a new one
-#     """
-
-#     # GET Request
-#     if request.method == 'GET':
-#         tasks = Task.objects.all()
-#         serializer = TaskSerializer(tasks)
-#         return Response(serializer.data)
-
-#     # POST Request
-#     if request.method == 'POST':
-#         serializer = TaskSerializer(data=request.DATA)
-
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-#         else:
-#             return Response(
-#                 serializer.errors, status=status.HTTP_400_BAD_REQUEST
-#             )
-
-
-# @api_view(['GET', 'PUT', 'DELETE'])
-# def task_detail(request, pk):
-#     """
-#     Get, update, or delete a specific task
-#     """
-#     try:
-#         task = Task.objects.get(pk=pk)
-#     except Task.DoesNotExist:
-#         return Response(status=status.HTTP_404_NOT_FOUND)
-
-#     # GET request
-#     if request.method == 'GET':
-#         serializer = TaskSerializer( task )
-#         return Response( serializer.data )
-
-#     # PUT request
-#     if request.method == 'PUT':
-#         serializer = TaskSerializer(task, data=request.DATA)
-
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(status=status.HTTP_201_CREATED)
-
-#         else:
-#             return Response(
-#                 serializer.errors, status=status.HTTP_400_BAD_REQUEST
-#             )
-
-#     # DELETE request
-#     elif request.method == 'DELETE':
-#         task.delete()
-#         return Response(status=status.HTTP_204_NO_CONTENT)
-
 
 
 # Example using class based views
@@ -108,8 +46,9 @@ class DummyResponse(APIView):
 
      def get(self, request, pk, format='json'):
          queryset = Task.objects.all()
-         serializer_class = TaskSerializer
-         return Response("hi")
+         serialized_data = serializers.serialize("json", queryset)
+         print "serialized_data::",serialized_data
+         return Response(serialized_data)
 
 
 
