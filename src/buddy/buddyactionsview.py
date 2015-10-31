@@ -50,12 +50,6 @@ class YourJoingList(LoginRequiredMixin, generic.TemplateView):
         allJoingLists = getAllJoingList()
         print type(allJoingLists)
 
-
-
-
-
-
-
         # perform db action here and create joing list and render it here
         return render_to_response("yourjoininglist.html", {"allJoingLists": allJoingLists})
 
