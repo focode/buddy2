@@ -6,9 +6,10 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.generics import (
     ListCreateAPIView, RetrieveUpdateDestroyAPIView )
-
+from django.db.models.loading import get_model
 from .models import Task
 from .serializers import TaskSerializer
+
 
 
 # Example using class based views
@@ -45,8 +46,9 @@ class DummyResponse(APIView):
 
 
      def get(self, request, pk, format='json'):
-         queryset = Task.objects.all()
-         serialized_data = serializers.serialize("json", queryset)
+         GuestEntryModel = get_model('buddy', 'GuestEntry')
+         print "GuestEntryModel.objects.all",GuestEntryModel.objects.all()
+         serialized_data = serializers.serialize("json", GuestEntryModel.objects.all())
          print "serialized_data::",serialized_data
          return Response(serialized_data)
 
