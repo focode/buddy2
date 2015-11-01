@@ -13,24 +13,18 @@
 
     app.controller('ajax', function($scope, $http) {
         $http.get(url).success( function(response) {
-        $scope.guestdata = [{"fields": {"completed": true, "title": "wedfrghjk"},
-         "model": "buddyapi.task", "pk": 1},
+        $scope.guestdata = response;
+        $scope.gridOptions = {};
+        console.log("guestdata::"+$scope.guestdata);
+        $scope.gridOptions.data = $scope.guestdata;
+        $scope.gridOptions.columnDefs = [
+           {name: 'fields.joiningtime' },
+           {name: 'fields.boozprofileId' },
+           {name: 'fields.userId' },
+           {name: 'fields.likeStatus' }
+       ];
 
-          {"fields": {"completed": true, "title": "wedfrghjk5"},
-           "model": "buddyapi.task", "pk": 2},
-           {"fields": {"completed": true, "title": "wedfrghjk5"},
-            "model": "buddyapi.task", "pk": 3},
-            {"fields": {"completed": true, "title": "wedfrghjk5"},
-             "model": "buddyapi.task", "pk": 4},
-              {"fields": {"completed": true, "title": "wedfrghjk5"},
-               "model": "buddyapi.task", "pk": 5},
-               {"fields": {"completed": true, "title": "wedfrghjk5"},
-               "model": "buddyapi.task", "pk": 6},
-               {"fields": {"completed": true, "title": "wedfrghjk5"},
-                "model": "buddyapi.task", "pk": 7},
-                {"fields": {"completed": true, "title": "wedfrghjk5"},
-                 "model": "buddyapi.task", "pk": 8}
-                 ];
+
         })
         });
 
