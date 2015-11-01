@@ -26,9 +26,10 @@
         <script src="{% static 'buddy/js/main.js' %}"></script>
 
         <style>
-                .myGrid {
+                .grid {
         width: 500px;
         height: 250px;
+         margin-top:60px;
       }
         </style>
         <script>
@@ -51,13 +52,17 @@
     </div>-->
 
 
-   <div ng-controller="MainCtrl1">
+
+
+   <div class="row">
+    <div class="col-lg-1 col-centered">
+
+        <div ng-controller="MainCtrl1">
       <div ui-grid="gridOptions" ui-grid-cellNav class="grid"></div>
     </div>
 
-   <div ng-controller="MainCtrl1">
-      <div ui-grid="gridOptions" ui-grid-cellNav class="grid"></div>
     </div>
+</div>
 
   </body>
 
